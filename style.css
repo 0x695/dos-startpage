@@ -1,0 +1,324 @@
+:root {
+    --bg: #000000;
+    --fg: #aaaaaa;
+    --bright: #ffffff;
+    --dim: #555555;
+    --rule: #444444;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: "Perfect DOS VGA 437", Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.25;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+    font-smooth: never;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 24px; /* clearance for fixed fkey bar */
+}
+
+/* single window frame for the whole app — real CP437 box-drawing edges,
+   not a CSS border trick — with plain side walls in between.
+   Sized to fit the viewport: only the link list scrolls internally. */
+#terminal-frame {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    width: 120ch;
+    max-width: calc(100vw - 16px);
+    margin: 8px auto 0;
+    border-left: 1px solid var(--fg);
+    border-right: 1px solid var(--fg);
+    overflow: hidden;
+}
+
+.ascii-rule {
+    flex: 0 0 auto;
+    white-space: pre;
+    color: var(--fg);
+    overflow: hidden;
+    letter-spacing: 0;
+}
+
+/* ---- search bar: sits inside the file pane, directly above the dir header ---- */
+#search-bar {
+    flex: 0 0 auto;
+    padding: 8px 20px 0;
+}
+
+#search-bar > form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#prompt {
+    color: var(--bright);
+    padding-right: 8px;
+    white-space: nowrap;
+}
+
+#search-bar input {
+    font-family: inherit;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--bright);
+    border: none;
+    width: 100%;
+    padding: 4px 0;
+    caret-shape: block;
+}
+
+#search-bar input:focus {
+    outline: none;
+}
+
+#search-bar input::placeholder {
+    color: var(--dim);
+}
+
+::-moz-selection { color: #000; background: #aaaaaa; }
+::selection { color: #000; background: #aaaaaa; }
+
+/* ---- two-pane app body: tree on the left, file listing on the right.
+   Fills whatever vertical space is left inside the frame. ---- */
+#app-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    overflow: hidden;
+}
+
+#tree-pane {
+    border-right: 1px solid var(--fg);
+    padding: 8px 0;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.tree-row {
+    display: block;
+    white-space: pre;
+    padding: 0 10px;
+    cursor: pointer;
+    color: var(--fg);
+}
+
+.tree-row .connector {
+    color: var(--dim);
+}
+
+.tree-row:hover,
+.tree-row:focus-visible {
+    background: var(--fg);
+    color: #000;
+    outline: none;
+}
+
+.tree-row:hover .connector,
+.tree-row:focus-visible .connector {
+    color: #000;
+}
+
+.tree-row.selected {
+    background: var(--bright);
+    color: #000;
+}
+
+.tree-row.selected .connector {
+    color: #000;
+}
+
+.tree-row.root {
+    color: var(--bright);
+    margin-bottom: 4px;
+}
+
+#file-pane {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#dir-header {
+    flex: 0 0 auto;
+    padding: 6px 20px 0;
+    color: var(--dim);
+    white-space: pre;
+    border-top: 1px dashed var(--rule);
+    margin-top: 8px;
+}
+
+#dir-header .path {
+    color: var(--fg);
+}
+
+@media (max-width: 720px) {
+    #app-body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    #tree-pane {
+        border-right: none;
+        border-bottom: 1px solid var(--fg);
+        max-height: 160px;
+    }
+}
+#section-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    margin: 0;
+    padding: 6px 20px 12px;
+    column-width: 220px;
+    column-gap: 22px;
+}
+
+.section {
+    break-inside: avoid-column;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 14px;
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--bright);
+    margin: 0 0 2px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.section-title::before {
+    content: "[-] ";
+    color: var(--dim);
+}
+
+.section.collapsed .section-title::before {
+    content: "[+] ";
+}
+
+.section.collapsed hr,
+.section.collapsed .item {
+    display: none;
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed var(--rule);
+    margin: 0 0 4px;
+}
+
+.item {
+    margin: 0;
+}
+
+.item a {
+    display: block;
+    color: var(--fg);
+    text-decoration: none;
+    padding: 0 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item a::before {
+    content: "> ";
+    color: var(--dim);
+}
+
+.item a:hover,
+.item a:focus-visible {
+    background: var(--fg);
+    color: #000;
+    outline: none;
+}
+
+.item a:hover::before,
+.item a:focus-visible::before {
+    color: #000;
+}
+
+.item.match a {
+    background: var(--fg);
+    color: #000;
+}
+
+.item.match a::before {
+    color: #000;
+}
+
+.section.hidden,
+.item.hidden {
+    display: none !important;
+}
+
+#no-results {
+    text-align: center;
+    padding: 30px;
+    color: var(--dim);
+    font-size: 1.1rem;
+}
+
+/* ---- bottom function-key bar, Norton Commander style, full-screen width ---- */
+#fkeys {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: flex;
+    flex-wrap: wrap;
+    background: #000;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+}
+
+.fkey {
+    display: flex;
+    align-items: stretch;
+    cursor: pointer;
+    user-select: none;
+}
+
+.fkey-num {
+    background: var(--fg);
+    color: #000;
+    padding: 3px 6px;
+}
+
+.fkey-label {
+    padding: 3px 10px 3px 6px;
+    color: var(--fg);
+}
+
+.fkey:hover .fkey-label,
+.fkey.active .fkey-label {
+    color: var(--bright);
+}
+
+.fkey.active .fkey-num,
+.fkey:hover .fkey-num {
+    background: var(--bright);
+}
+
+@media (max-width: 640px) {
+    .fkey-label { padding-right: 6px; }
+}

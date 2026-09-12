@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>/startpage</title>
+    <link rel="preconnect" href="https://fonts.cdnfonts.com">
+    <link href="https://fonts.cdnfonts.com/css/perfect-dos-vga-437" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <div id="terminal-frame">
+    <div class="ascii-rule" id="rule-top">╔══[ STARTPAGE.SYS ]═══════════════════════════════════════════════════════════════════════════════════════════════════╗</div>
+
+    <div id="app-body">
+        <nav id="tree-pane" aria-label="Category tree"></nav>
+        <div id="file-pane">
+        <div id="search-bar">
+            <form action="https://duckduckgo.com/">
+                <span id="prompt">C:\&gt;</span>
+                <input type="text" id="search-input" placeholder="cd SEARCH_ENGINE or type to filter" name="q" autocomplete="off" autofocus>
+            </form>
+        </div>
+        <div id="dir-header"></div>
+        <div id="section-container">
+
+        <div class="section" id="section-example" data-cat="net">
+            <h2 class="section-title">EXAMPLE_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/link_one</a></div>
+            <div class="item"><a href="https://example.com/">/link_two</a></div>
+            <div class="item"><a href="https://example.com/">/link_three</a></div>
+        </div>
+
+        <div class="section" id="section-mail" data-cat="net">
+            <h2 class="section-title">MAIL_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/webmail</a></div>
+            <div class="item"><a href="https://example.com/">/calendar</a></div>
+        </div>
+
+        <div class="section" id="section-dev" data-cat="net">
+            <h2 class="section-title">DEV_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/git_repo</a></div>
+        </div>
+
+        <div class="section" id="section-bank" data-cat="life">
+            <h2 class="section-title">BANK_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/bank_login</a></div>
+        </div>
+
+        <div class="section" id="section-shopping" data-cat="life">
+            <h2 class="section-title">SHOPPING_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/shop_one</a></div>
+            <div class="item"><a href="https://example.com/">/shop_two</a></div>
+        </div>
+
+        <div class="section" id="section-weather" data-cat="life">
+            <h2 class="section-title">WEATHER_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/forecast</a></div>
+        </div>
+
+        <div class="section" id="section-gamedev" data-cat="games">
+            <h2 class="section-title">GAMEDEV_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/asset_tool</a></div>
+            <div class="item"><a href="https://example.com/">/engine_docs</a></div>
+        </div>
+
+        <div class="section" id="section-games" data-cat="games">
+            <h2 class="section-title">GAMES_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/store_front</a></div>
+            <div class="item"><a href="https://example.com/">/mod_hub</a></div>
+        </div>
+
+        <div class="section" id="section-wiki" data-cat="games">
+            <h2 class="section-title">WIKI_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/game_wiki</a></div>
+        </div>
+
+        <div class="section" id="section-music" data-cat="media">
+            <h2 class="section-title">MUSIC_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/stream_one</a></div>
+        </div>
+
+        <div class="section" id="section-news" data-cat="media">
+            <h2 class="section-title">NEWS_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/news_feed</a></div>
+        </div>
+
+        <div class="section" id="section-pics" data-cat="media">
+            <h2 class="section-title">PICS_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/gallery</a></div>
+        </div>
+
+        <div class="section" id="section-3d" data-cat="make">
+            <h2 class="section-title">3D_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/model_repo</a></div>
+        </div>
+
+        <div class="section" id="section-elec" data-cat="make">
+            <h2 class="section-title">ELEC_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/parts_shop</a></div>
+        </div>
+
+        <div class="section" id="section-scene" data-cat="scene">
+            <h2 class="section-title">SCENE_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/forum_one</a></div>
+        </div>
+
+        <div class="section" id="section-p2p" data-cat="scene">
+            <h2 class="section-title">MISC_</h2>
+            <hr>
+            <div class="item"><a href="https://example.com/">/misc_link</a></div>
+        </div>
+
+        </div>
+        <div id="no-results" hidden>NO MATCHES — try another query</div>
+        </div><!-- /file-pane -->
+    </div><!-- /app-body -->
+    <div class="ascii-rule" id="rule-bottom">╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝</div>
+    </div><!-- /terminal-frame -->
+
+    <div id="fkeys" aria-label="Category filter"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
