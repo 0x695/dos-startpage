@@ -2,8 +2,6 @@
 
 A personal browser startpage styled after a real MS-DOS text-mode shell — a directory tree of categories on the left, a `dir`-style file listing on the right, box-drawn window frame, live search filter, and keyboard navigation. No frameworks, no build step: three static files.
 
-![Screenshot](screenshot.png)
-
 ## Features
 
 - **Tree + file-pane browsing** — categories and link groups laid out like the classic MS-DOS Shell / Norton Commander file manager. Click (or arrow-key through) the tree on the left to filter the listing on the right.
@@ -45,12 +43,6 @@ No build step — just open `index.html` in a browser, or serve the folder with 
 python3 -m http.server
 ```
 
-## Deploying to GitHub Pages
-
-1. Push this repo to GitHub.
-2. Repo Settings → Pages → set the source to the branch/folder containing these files (root, or `/docs` if you move them there).
-3. Your startpage will be live at `https://<username>.github.io/<repo>/`.
-
 ## Files
 
 | File | Purpose |
@@ -60,7 +52,6 @@ python3 -m http.server
 | `script.js` | Builds the tree from the sections in the page, handles search/filter/keyboard nav |
 | `favicon.png` | Browser tab icon |
 | `Terminal.fon` | Legacy Windows shortcut icon font resource — not used by the browser rendering (browsers can't load `.fon` files as webfonts); kept for the desktop-shortcut use case |
-| `desktop.ini` | Windows folder-icon config, from the original desktop-shortcut version |
 
 ## Credits
 
